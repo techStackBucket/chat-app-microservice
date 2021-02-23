@@ -22,7 +22,7 @@ async function authenticate({ email, password }) {
     if (!user || !bcrypt.compareSync(password, user.password)) 
         throw new WrongLoginInfoException()
 
-    const token = jwt.sign({ sub: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
     return {
         ...user.toJSON(),
         token
