@@ -13,13 +13,11 @@ function register(req, res, next) {
     const { email, password } = req.body
     createUser({ email, password })
         .then(_ => res.status(201).json({ result: resultCodes.SUCCESS }))
-        .catch(err => next(err))
+        .catch(next)
 }
 
 function login(req, res, next) {
     authenticate(req.body)
-        .then(data => data
-            ? res.json({ result: resultCodes.SUCCESS, data })
-            : res.status(400).json({ result: resultCodes.ERROR, message: 'Email or password is incorrect' }))
-        .catch(err => next(err))
+        .then(data => res.json({ result: resultCodes.SUCCESS, data }))
+        .catch(next)
 }
