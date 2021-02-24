@@ -11,5 +11,5 @@ mongoose.connect(
 );
 
 module.exports = {
-    User: require('../models/user')
+    User: require('../models/User')
 };
