@@ -4,8 +4,9 @@ const makeUpdateUser = require('./update-user');
 const makeRemoveUser = require('./remove-user');
 const makeGetUser = require('./get-user');
 const makeListUser = require('./list-user');
+const {isEmpty} = require('../helper')
 
-const insert = makeAddUser({usersDb});
+const insert = makeAddUser({usersDb, isEmpty});
 const update = makeUpdateUser({usersDb});
 const remove = makeRemoveUser({usersDb});
 const get = makeGetUser({usersDb});

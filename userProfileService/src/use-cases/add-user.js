@@ -1,7 +1,6 @@
 const makeUser = require('../user');
-const {isEmpty} = require('../helper');
 
-module.exports = function makeAddUser({usersDb}){
+module.exports = function makeAddUser({usersDb, isEmpty}){
     return async function insert(userInfo){
         const user = makeUser(userInfo);
         const exist = await usersDb.findByEmail({ email: user.getEmail() })
