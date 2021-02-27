@@ -1,8 +1,8 @@
-module.exports = function makePatchUser({updateUser}){
+module.exports = function makePatchUser({update}){
     return async function patchUser(httpRequest){
         try{
             const { ...userInfo } = httpRequest.body;
-            const patched = await updateUser({
+            const patched = await update({
                 ...userInfo,
                 id: httpRequest.params.id
             })

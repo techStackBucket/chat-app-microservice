@@ -1,8 +1,8 @@
-module.exports = function makePostUser({addUser}){
+module.exports = function makePostUser({insert}){
     return async function postUser(httpRequest){
         try{
             const { ...userInfo } = httpRequest.body;
-            const posted = await addUser({
+            const posted = await insert({
                 ...userInfo
             })
             return {
