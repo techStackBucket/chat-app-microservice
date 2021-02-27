@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const {postUser, patchUser, deleteUser, getUser, listUser} = require('./controllers');
+const {verifyAuthorization, globalErrorHandler} = require('./middleware');
 const dotenv = require('dotenv')
 dotenv.config({path: require('find-config')('.env')});
 
@@ -10,6 +11,9 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+app.use(verifyAuthorization);
+app.use(globalErrorHandler);
 
 const apiRoot = process.env.API_ROOT
 
