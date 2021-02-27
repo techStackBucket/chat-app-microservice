@@ -1,6 +1,6 @@
 const {makeDb} = require('../src/data-access');
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({path: require('find-config')('.env')});
 
 (async function setupDb () {
   console.log('Setting up database...')

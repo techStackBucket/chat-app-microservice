@@ -1,7 +1,7 @@
 const makeUsersDb = require('./users-db');
 const mongodb = require('mongodb');
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config({path: require('find-config')('.env')});
 
 const MongoClient = mongodb.MongoClient
 const url = process.env.USERS_DB_URL
