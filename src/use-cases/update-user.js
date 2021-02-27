@@ -1,6 +1,6 @@
 const makeUser = require('../user')
 module.exports = function makeUpdateUser({usersDb}){
-    return async function updateUser({ id, ...changes } = {}){
+    return async function update({ id, ...changes } = {}){
         if (!id) {
             throw new Error('You must supply an id.')
         }

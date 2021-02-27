@@ -1,17 +1,29 @@
 const {usersDb} = require('../data-access');
 const makeAddUser = require('./add-user');
 const makeUpdateUser = require('./update-user');
+const makeRemoveUser = require('./remove-user');
+const makeGetUser = require('./get-user');
+const makeListUser = require('./list-user');
 
-const addUser = makeAddUser({usersDb});
-const updateUser = makeUpdateUser({usersDb});
+const insert = makeAddUser({usersDb});
+const update = makeUpdateUser({usersDb});
+const remove = makeRemoveUser({usersDb});
+const get = makeGetUser({usersDb});
+const list = makeListUser({usersDb});
 
 const userService = Object.freeze({
-    addUser,
-    updateUser
+    insert,
+    update,
+    remove, 
+    get,
+    list
 });
 
 module.exports = {
-    addUser,
-    updateUser,
+    insert,
+    update,
+    remove, 
+    get,
+    list,
     default: userService
 }

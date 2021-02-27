@@ -1,11 +1,12 @@
 const makeUser = require('../user');
-
+const {isEmpty} = require('../helper');
 
 module.exports = function makeAddUser({usersDb}){
-    return async function addUser(userInfo){
+    return async function insert(userInfo){
         const user = makeUser(userInfo);
-        const exists = await usersDb.findByEmail({ email: user.getEmail() })
-        if (exists) {
+        const exist = await usersDb.findByEmail({ email: user.getEmail() })
+        
+        if (exist && !isEmpty(exist)) {
             throw new Error('The email address is already used.')
         }
 
