@@ -1,11 +1,21 @@
 version: '3'
 services: 
+  userservice:
+    container_name: userProfile-service
+    build:
+      context: ./userProfileService
+    ports: 
+      - "3000:3000"
+    depends_on: 
+      - userDb
+    env_file: 
+      - .env
+
   userDb:
     image: mongo
     restart: always
     ports:
       - '27017:27017'
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+    env_file: 
+      - .env
 
