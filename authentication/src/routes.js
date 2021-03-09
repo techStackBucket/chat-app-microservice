@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser, authenticate } = require('./services/userService');
+const { createUser, authenticate } = require('./services/authService');
 const { resultCodes } = require('./enums');
 const authHandler = require('./middlewares');
 

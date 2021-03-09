@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../helpers/db');
+const getHashedPassword = require('../helpers/security');
 const { UserAlreadyExist, WrongLoginInfoException } = require('../exceptions')
 
 const User = db.User;
@@ -12,9 +13,11 @@ async function createUser(params) {
     const user = new User(params)
 
     if (params.password)
-        user.password = bcrypt.hashSync(params.password, 10)
+        user.password = getHashedPassword(params.password)
 
-    await user.save();
+    const result = await user.save();
+
+    return result;
 }
 
 async function authenticate({ email, password }) {
