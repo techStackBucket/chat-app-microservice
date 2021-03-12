@@ -8,7 +8,7 @@ module.exports = function makeGetUser({get}){
               'Content-Type': 'application/json',
               },
               statusCode: 200,
-              body: { ...user, ...{ password : undefined } }
+              body: { ...user, ...{ id : user.userId, userId:undefined } }
           }
       }catch(e){
           // console.log(e)

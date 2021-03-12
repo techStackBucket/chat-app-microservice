@@ -10,7 +10,7 @@ module.exports = function makeListUser({list}){
                 },
                 statusCode: 200,
                 body: { userList : userList.map(user => {
-                   return user = {...user, ...{password:undefined}}
+                   return user = {...user, ...{id:user.userId, userId:undefined}}
                 })}
             }
         }catch(e){

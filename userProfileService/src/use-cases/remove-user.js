@@ -1,16 +1,16 @@
 module.exports = function makeRemoveUser({usersDb}){
-    return async function remove({ id } = {}){
-        if (!id) {
+    return async function remove({ userId } = {}){
+        if (!userId) {
             throw new Error('You must supply a user id.')
         }
 
-        const user = await usersDb.findById({ id })
+        const user = await usersDb.findById({ userId })
 
         if (!user) {
             return removeNothing()
         }
 
-        return hardDelete(id);
+        return hardDelete(userId);
     }
 
     function removeNothing () {
@@ -19,8 +19,8 @@ module.exports = function makeRemoveUser({usersDb}){
           message: 'User not found, nothing to delete.'
         }
     }
-    async function hardDelete (id) {
-        await usersDb.remove({id})
+    async function hardDelete (userId) {
+        await usersDb.remove({userId})
         return {
           deletedCount: 1,
           message: 'User deleted.'

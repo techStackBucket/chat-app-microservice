@@ -7,13 +7,15 @@ module.exports = function buildMakeUser({Id, md5, validation}){
         createdOn = Date.now(),
         id = Id.makeId(),    
         modifiedOn = Date.now(),
-        password,
         age,
         gender,
         isDeleted = false
     }={}){
         if (!Id.isValidId(id)) {
-            throw new Error('User must have a valid id.')
+            throw new Error('Uniq id must be generated.')
+          }
+          if(!userId){
+            throw new Error('User must have an id.')
           }
           if (!name) {
             throw new Error('User must have a name.')
@@ -27,12 +29,6 @@ module.exports = function buildMakeUser({Id, md5, validation}){
           if (!validation(email, 1)) {
             throw new Error('User must have a valid email.')
           }
-          if (!password) {
-            throw new Error('User must have a password.')
-          }
-          if (!validation(password, 2)) {
-            throw new Error('User must have a password.')
-          }
 
           return Object.freeze({
             getName: () => name,  
@@ -40,8 +36,8 @@ module.exports = function buildMakeUser({Id, md5, validation}){
             getFullName: () => name + " " + surname,
             getNickName: ()=> nickName,
             getCreatedOn: () => createdOn,
-            getPassword: () => makeEncrypt(),
             getId: () => id,
+            getUserId: ()=> userId,
             getEmail:()=> email,
             getGender: ()=> gender,
             getAge: ()=> age,
@@ -51,9 +47,5 @@ module.exports = function buildMakeUser({Id, md5, validation}){
               isDeleted = true
             }
           })
-          
-          function makeEncrypt () {
-            return md5(password)
-          }
     }
 }

@@ -4,7 +4,7 @@ module.exports = function makeGetUser({usersDb}){
             throw new Error('You must supply an id.')
         }
 
-        const user = await usersDb.findById({ id : userId })
+        const user = await usersDb.findById({ userId })
 
         // if (!user) {
         //     throw new RangeError('User not found.');

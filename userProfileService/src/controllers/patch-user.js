@@ -4,7 +4,7 @@ module.exports = function makePatchUser({ update }) {
       const { ...userInfo } = httpRequest.body;
       const patched = await update({
         ...userInfo,
-        id: httpRequest.params.id
+        userId: httpRequest.params.id
       })
       return {
         headers: {

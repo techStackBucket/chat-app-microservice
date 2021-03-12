@@ -17,7 +17,7 @@ app.use(globalErrorHandler);
 
 const apiRoot = process.env.API_ROOT
 
-app.post(`${apiRoot}/users`, makeCallback(postUser));
+// app.post(`${apiRoot}/users`, makeCallback(postUser));
 app.patch(`${apiRoot}/users/:id`, makeCallback(patchUser));
 app.delete(`${apiRoot}/users/:id`, makeCallback(deleteUser));
 app.get(`${apiRoot}/users/:id`, makeCallback(getUser));

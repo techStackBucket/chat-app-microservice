@@ -1,10 +1,10 @@
 const makeUser = require('../user')
 module.exports = function makeUpdateUser({usersDb}){
-    return async function update({ id, ...changes } = {}){
-        if (!id) {
+    return async function update({ userId, ...changes } = {}){
+        if (!userId) {
             throw new Error('You must supply an id.')
         }
-        const existing = await usersDb.findById({ id })
+        const existing = await usersDb.findById({ userId })
         
         if (!existing) {
             throw new RangeError('User not found.');
@@ -14,13 +14,13 @@ module.exports = function makeUpdateUser({usersDb}){
         
         const updated = await usersDb.update({
             id: user.getId(),
+            userId: user.getUserId(),
             name: user.getName(),
             surname: user.getSurname(),
             nickName: user.getNickName(),
             email: user.getEmail(),
             gender: user.getGender(),
             age: user.getAge(),
-            password: user.getPassword(),
             createdOn: user.getCreatedOn(),
             modifiedOn: user.getModifiedOn(),
           })

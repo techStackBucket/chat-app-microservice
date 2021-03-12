@@ -4,7 +4,7 @@ module.exports = function makeDeleteUser({remove}){
             'Content-Type': 'application/json'
         }
         try {
-            const deleted = await remove({ id: httpRequest.params.id })
+            const deleted = await remove({ userId: httpRequest.params.id })
             return {
               headers,
               statusCode: deleted.deletedCount === 0 ? 404 : 200,

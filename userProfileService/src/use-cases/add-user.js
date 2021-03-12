@@ -11,13 +11,13 @@ module.exports = function makeAddUser({usersDb, isEmpty}){
 
         return usersDb.insert({
             id: user.getId(),
+            userId: user.getUserId(),
             name: user.getName(),
             surname: user.getSurname(),
             nickName: user.getNickName(),
             email: user.getEmail(),
             gender: user.getGender(),
             age: user.getAge(),
-            password: user.getPassword(),
             createdOn: user.getCreatedOn(),
             modifiedOn: user.getModifiedOn(),
           })

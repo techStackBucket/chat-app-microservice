@@ -19,9 +19,9 @@ module.exports = function makeUsersDb({makeDb}){
           ...found
         }))
       }
-      async function findById ({ id: _id }) {
+      async function findById ({ userId }) {
         const db = await makeDb()
-        const result = await db.collection('users').find({ _id })
+        const result = await db.collection('users').find({ userId })
         const found = await result.toArray()
         if (found.length === 0) {
           return null
@@ -55,9 +55,9 @@ module.exports = function makeUsersDb({makeDb}){
           .updateOne({ _id }, { $set: { ...userInfo } })
         return result.modifiedCount > 0 ? { id: _id, ...userInfo } : null
       }
-      async function remove ({ id: _id }) {
+      async function remove ({ userId }) {
         const db = await makeDb()
-        const result = await db.collection('users').deleteOne({ _id })
+        const result = await db.collection('users').deleteOne({ userId })
         return result.deletedCount
       }
 }
