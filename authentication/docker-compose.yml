@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  mongo:
+    container_name: mongo-auth
+    image: mongo
+    restart: always
+    ports:
+        - "27017:27017"
+
+  app:
+    container_name: authentication-service
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    env_file:
+      - src/.env
+
