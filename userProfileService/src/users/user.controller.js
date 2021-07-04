@@ -1,4 +1,6 @@
+const { response, json } = require('express');
 const express = require('express');
+const logger = require('../_helpers/logger');
 const router = express.Router();
 const userService = require('./user.service');
 
@@ -26,19 +28,31 @@ function getById(req, res, next) {
 }
 
 function update(req, res, next) {
+    logger.info("update user request : " +  JSON.stringify(req.body))
     userService.update(req.params.id, req.body)
-        .then(() => res.json({}))
+        .then(() => {
+            logger.info("the user has been updated successfuly.");
+            res.json({});
+        })
         .catch(err => next(err));
 }
 
 function create(req, res, next) {
+    logger.info("create user request : " +  JSON.stringify(req.body))
     userService.create(req.body)
-        .then(() => res.json({}))
+        .then(() => {
+            logger.info("New user has been created successfuly.")
+            res.json({})
+        })
         .catch(err => next(err));
 }
 
 function _delete(req, res, next) {
+    logger.info("delete user request : " +  JSON.stringify(req.params.id))
     userService.delete(req.params.id)
-        .then(() => res.json({}))
+        .then(() =>{
+            logger.info( req.params.id + " user has been removed successfuly.")
+            res.json({})
+        })
         .catch(err => next(err));
 }

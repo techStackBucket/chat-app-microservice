@@ -1,6 +1,10 @@
 module.exports = errorHandler;
-
+const logger = require("./logger");
 function errorHandler(err, req, res, next) {
+    
+    logger.error("request : " +  JSON.stringify(req))
+    logger.error("error : " +  JSON.stringify(err))
+
     if (typeof (err) === 'string') {
         // custom application error
         return res.status(400).json({ message: err });
