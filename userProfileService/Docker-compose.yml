@@ -1,5 +1,12 @@
 version: '3'
 services: 
+  seqLog:
+    image: datalust/seq:latest
+    ports: 
+      - '5341:80'
+    env_file: 
+      - src/.env
+
   userservice:
     container_name: userProfile-service
     build: .
@@ -17,4 +24,3 @@ services:
       - '27017:27017'
     env_file: 
       - src/.env
-
