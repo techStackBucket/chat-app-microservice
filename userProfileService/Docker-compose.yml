@@ -2,14 +2,13 @@ version: '3'
 services: 
   userservice:
     container_name: userProfile-service
-    build:
-      context: ./userProfileService
+    build: .
     ports: 
-      - "3000:3000"
+      - "4000:4000"
     depends_on: 
       - userDb
     env_file: 
-      - .env
+      - src/.env
 
   userDb:
     image: mongo
@@ -17,5 +16,5 @@ services:
     ports:
       - '27017:27017'
     env_file: 
-      - .env
+      - src/.env
 

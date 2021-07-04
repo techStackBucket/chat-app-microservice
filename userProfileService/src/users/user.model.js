@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     // TODO : which dataType is userID going to be? integer or string?
-    userId : { type: Number, unique: true, required: true },
+    userId : { type: String, unique: true, required: true },
     email: { type: String, unique: true, required: true },
     userName: { type: String, unique: true, required: true },
     name:{type: String, required:true},
@@ -23,4 +23,4 @@ schema.set('toJSON', {
     }
 });
 
-module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model('users', schema);
