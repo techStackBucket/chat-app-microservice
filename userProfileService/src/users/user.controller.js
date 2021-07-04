@@ -7,8 +7,8 @@ const userService = require('./user.service');
 // routes
 // TODO: which options is the route going to be provide? create, update, delete, retrieve?
 // router.post('/register', register);
-router.get('/', getAll);
-router.post('/', create);
+// router.get('/', getAll);
+// router.post('/', create);
 router.get('/:id', getById);
 router.put('/:id', update);
 // router.delete('/:id', _delete);

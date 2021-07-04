@@ -1,8 +1,7 @@
 module.exports = errorHandler;
 const logger = require("./logger");
 function errorHandler(err, req, res, next) {
-    
-    logger.error("request : " +  JSON.stringify(req))
+    // TODO: cchek here
     logger.error("error : " +  JSON.stringify(err))
 
     if (typeof (err) === 'string') {

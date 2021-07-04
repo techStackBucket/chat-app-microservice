@@ -41,14 +41,18 @@ async function create(userParam) {
     await user.save();
 }
 
-async function update(userParam) {
+async function update(userId, userParam) {
     // const user = await User.findOne({email: userParam.email});
-    const user = await User.findOne({userId:userParam.userId});
+    const user = await User.findOne({userId:userId});
 
     // validate
     if (!user) throw 'User not found';
     if (user.userName !== userParam.userName && await User.findOne({ userName: userParam.userName })) {
         throw 'Username "' + userParam.userName + '" is already taken';
+    }
+
+    if (user.email !== userParam.email && await User.findOne({ email: userParam.email })) {
+        throw 'Email "' + userParam.email + '" is already taken';
     }
 
     // copy userParam properties to user
