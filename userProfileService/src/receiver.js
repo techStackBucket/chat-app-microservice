@@ -1,6 +1,10 @@
-var amqp = require('amqplib/callback_api');
+require("rootpath")();
+const path = require('path');
+require('dotenv').config({path : path.resolve(__dirname , '.env')});
 
-amqp.connect('amqps://ufjdhmvw:p_Y145oYRyVTfWwEDImJhPfN0cuO1sXT@cow.rmq2.cloudamqp.com/ufjdhmvw', function(error0, connection) {
+var amqp = require('amqplib/callback_api');
+var rabbitUri = process.env.RABBIT_MQ_URI;
+amqp.connect(rabbitUri, function(error0, connection) {
     if (error0) {
         throw error0;
     }
@@ -9,7 +13,7 @@ amqp.connect('amqps://ufjdhmvw:p_Y145oYRyVTfWwEDImJhPfN0cuO1sXT@cow.rmq2.cloudam
             throw error1;
         }
 
-        var queue = 'userProfileService-register';
+        var queue = process.env.QUEUE_NAME;
 
         channel.assertQueue(queue, {
             durable: true
