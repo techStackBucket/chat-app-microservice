@@ -6,7 +6,6 @@ const logger = require("_helpers/logger");
 const app = express();
 const cors = require("cors");
 const errorHandler = require("_helpers/error-handler");
-const verifyAuthorization = require("_helpers/verify-authorization");
 
 app.use(express.urlencoded());
 app.use(express.json());
@@ -17,9 +16,6 @@ var apiRoot = process.env.API_ROOT || '/api/v1';
 
 // api routes
 app.use(apiRoot + '/users', require('./users/user.controller'));
-
-// check the user got authorization on authentication service
-app.use(verifyAuthorization);
 
 // global error handler
 app.use(errorHandler);

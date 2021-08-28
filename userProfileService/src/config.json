@@ -1,3 +1,4 @@
 {
-    "connectionString": "mongodb://root:example@192.168.99.100:27017"
+    "connectionString": "mongodb://root:example@192.168.99.100:27017",
+    "secret": "secret"
 }

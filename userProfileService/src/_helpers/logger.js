@@ -1,6 +1,5 @@
 const LogLib = require("chat-logger");
 
-console.log(__dirname);
 module.exports = LogLib({
     name:"userProfileServie",
     level:"warn",

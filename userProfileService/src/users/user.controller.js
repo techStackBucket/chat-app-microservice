@@ -3,14 +3,15 @@ const express = require('express');
 const logger = require('../_helpers/logger');
 const router = express.Router();
 const userService = require('./user.service');
+const verifyAuthorization = require("_helpers/verify-authorization");
 
 // routes
 // TODO: which options is the route going to be provide? create, update, delete, retrieve?
 // router.post('/register', register);
 // router.get('/', getAll);
 // router.post('/', create);
-router.get('/:id', getById);
-router.put('/:id', update);
+router.get('/:id', verifyAuthorization, getById);
+router.put('/:id', verifyAuthorization, update);
 // router.delete('/:id', _delete);
 
 module.exports = router;
