@@ -6,6 +6,7 @@ const logger = require("_helpers/logger");
 const app = express();
 const cors = require("cors");
 const errorHandler = require("_helpers/error-handler");
+const subscriber = require("subscriber");
 
 app.use(express.urlencoded());
 app.use(express.json());
@@ -25,3 +26,5 @@ const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 
 const server = app.listen(port, function () {
     logger.info('Server listening on port ' + port)
 });
+
+subscriber()

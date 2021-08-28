@@ -17,7 +17,6 @@ module.exports = verifyAuthorization;
         }
             
     } catch (err) {
-        console.log(err);
         return res.status(401).send("Invalid Token");
     } 
 
